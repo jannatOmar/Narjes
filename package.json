@@ -1,0 +1,25 @@
+{
+    "name": "material-dashboard-pro",
+    "description": "Premium Bootstrap 4 Material Design",
+    "version": "2.2.2",
+    "homepage": "http://creative-tim.com/product/material-dashboard-pro",
+    "author": "Creative Tim",
+    "license": "Creative Tim License <www.creative-tim.com/license>",
+    "devDependencies": {
+        "bootstrap": "^4.0.0",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^6.1.0",
+        "gulp-clean": "^0.4.0",
+        "gulp-install": "^1.1.0",
+        "gulp-open": "^3.0.1",
+        "gulp-sass": "^4.0.2",
+        "gulp-sourcemaps": "^2.6.5",
+        "jquery": "^3.2",
+        "popper.js": "^1.12",
+        "resolve-url-loader": "^2.3.1",
+        "sass": "^1.20.1",
+        "sass-loader": "^8.0.0",
+        "vue": "^2.5.17",
+        "vue-template-compiler": "^2.6.10"
+    }
+}
