@@ -25,7 +25,7 @@ class NewFormRequest extends FormRequest
     {
         return [
             //
-            'analysis_name'=>'required|regex:/^[a-zA-Z]+$/u|unique:analysis,analysis_name'.$this->id,
+            'analysis_name'=>'required|unique:analysis,analysis_name'.$this->id,
             'price'=> 'required|numeric|integer|min:0',
             'group'=> 'required',
             'max_normal.*'=>'required',
@@ -33,7 +33,7 @@ class NewFormRequest extends FormRequest
             'input.*'=>'required|string',
             'unit.*'=>'required',
             'optioInput.*'=>'required',
-            
+
 
 
         ];
@@ -42,8 +42,6 @@ class NewFormRequest extends FormRequest
     {
         return[
         'integer'=>'يجب ادخال رقم صحيح',
-        'regex'=>'يجب ادخال نص خالي من الأرقام والاشارات',
-
         'analysis_name.required'=> 'هذا الحقل مطلوب',
         'string'=>'يجب ادخال نص',
         'required'=>'هذا الحقل مطلوب',
