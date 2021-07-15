@@ -62,7 +62,7 @@
                             <label class="bmd-label-floating">Doctor Name</label>
                             <input type="text" class="form-control" readonly name="doctor_name"
                                 value="{{$test->doctor[0]->f_name}} {{$test->doctor[0]->m_name}} {{$test->doctor[0]->l_name}}"
-                          
+
                                 >
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     @isset($patient)
                     @if($patient->gender=="male")
                     <div class="col-md-2">
@@ -118,7 +118,7 @@
                                 value='{{$tests->high_range}}'>
                         </div>
                     </div>
-                    
+
                     @endif
                     @endisset
 
@@ -131,7 +131,7 @@
                                 value='{{$tests->low_range}}'>
                         </div>
                     </div>
-                    
+
                     @endif
                     @endisset
                     <div class="col-md-2">
@@ -141,7 +141,7 @@
                                 value='{{$tests->unit}}'>
                         </div>
                     </div>
-                  
+
                 </div>
                 @endforeach
                 @endisset
@@ -174,8 +174,8 @@
                             @enderror
                         </div>
                     </div>
-                 
-                  
+
+
                 </div>
                 @endforeach
                 @endforeach
@@ -197,9 +197,9 @@
                 <div class="row justify-content-center">
                     <button type="submit" class="btn btn-rose  col-md-3 "> Save Result</button>
                     <div class="clearfix"></div>
-                    <button type="submit" class="btn btn-rose  col-md-3"> Print</button>
+                    <button type="button" onclick="window.print()" class="btn btn-rose  col-md-3"> Print</button>
                     <div class="clearfix"></div>
-                    <button type="submit" class="btn btn-rose col-md-3 "> Send to patient</button>
+                    <button type="button" class="btn btn-rose col-md-3 "> Send to patient</button>
                     <div class="clearfix"></div>
                 </div>
 

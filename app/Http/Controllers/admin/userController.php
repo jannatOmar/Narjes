@@ -110,7 +110,7 @@ class userController extends Controller
             }
             if($request->status=='not active' || $request->has('end_date')){
                 $status=0;
-            }else{
+            }if($request->status=='active'){
                 $status=1;
             }
              $user=Users::selection()->with('role')->where('id',$user_id)->get();
@@ -121,6 +121,7 @@ class userController extends Controller
             }
              $userInformation="[ ".$user[0]->role->role_name." , ".$user[0]->f_name." , ".$user[0]->m_name." , ".$user[0]->l_name." , ".$user[0]->age." , ".
             $user[0]->address." , ".$user[0]->phone." , ".$user[0]->email." , ".$user[0]->username." , ".$user[0]->end_date." , ".$sta." ]";
+            // return Users::selection()->where('id',$user_id)->get();
             Users::where('id',$user_id)
            ->update(
               [
@@ -138,7 +139,7 @@ class userController extends Controller
                   'update_user_id'=>auth()->user()->id
               ]
            );
-
+           // return Users::selection()->where('id',$user_id)->get();
             $mess = "the user ".$us." make an update on user: ".$request["username"] .
            "from: ".$userInformation. " to: [ ".
                    $request["role_name"] ." , ".$request["f_name"]." , ".$request["m_name"]." , ".$request["l_name"]." , ".$request["age"]." , ".

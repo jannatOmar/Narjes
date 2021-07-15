@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="row">
-                            
+
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="bmd-label-floating" style="font-size: 12px;">Doctor name</label>
@@ -60,7 +60,7 @@
 
                                 </div>
                             </div>
-                            
+
                             @isset($normal_range)
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -113,7 +113,7 @@
                       <div class="col-md-12">
 
                             <div class="row">
-                            
+
                             @isset($patient)
                                @if($patient->gender=="male")
                                 <div class="col-md-6">
@@ -124,7 +124,7 @@
 
                                     </div>
                                 </div>
-                                
+
                                 @endif
                                @endisset
                                @isset($patient)
@@ -160,7 +160,7 @@
                             <button type="button" rel="tooltip" class="btn btn-rose" style="margin-right: 20px;">
                                 Send Result To Patient
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-rose" style="margin-right: 20px;">
+                            <button type="button" onclick="window.print()" rel="tooltip" class="btn btn-rose" style="margin-right: 20px;">
                                 print
                             </button>
                         </div>
