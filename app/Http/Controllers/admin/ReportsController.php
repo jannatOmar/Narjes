@@ -41,7 +41,6 @@ class ReportsController extends Controller
             if(count($ids) == 0 ){
                 return redirect()->route('admin.report.patient')->with(['error'=>' لا يوجد مرضى ضمن الفترة المدخلة']);
             }
-
             $idF=[];
             $idP=[];
             $data=[];
@@ -56,8 +55,8 @@ class ReportsController extends Controller
                }
                if(!in_array($id->patient_id, $idP)){
                    $idP[]=$id->patient_id;
-                  }
-           }
+                }
+            }
             $countP=count($idP);
            $countF=count($idF);
            foreach($idF as $index=>$f){
@@ -144,6 +143,8 @@ class ReportsController extends Controller
 
             $dateFrom=$request->dateFrom;
             $dateTo=$request->dateTo;
+            // return $dateFrom. " ".$dateTo;
+
             if($dateTo==null){
                 $dateTo = Carbon::now();
             }
@@ -154,7 +155,7 @@ class ReportsController extends Controller
          $countPatient=financial_managment::groupBy('discount_id')->select('discount_id',DB::raw('count(patient_id) as countPatient'))->whereBetween('time', [$dateFrom, $dateTo])->get();
 
 
-         $discounts=Discount::selection()->get();
+         $discounts=Discount::selection()->whereBetween('time',[$dateFrom, $dateTo])->get();
 
          $count1=$count[0]->total1;
          $count2=$count[0]->total2;
