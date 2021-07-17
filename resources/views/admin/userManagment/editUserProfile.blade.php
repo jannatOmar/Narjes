@@ -8,10 +8,10 @@
                 <div class="card-icon">
                     <i class="material-icons">perm_identity</i>
                 </div>
-                <h4 class="card-title">Edit User Profile 
+                <h4 class="card-title">Edit User Profile
                 </h4>
             </div>
-            
+
             @include('alert.success')
                 @include('alert.errors')
             <div class="card-body">
@@ -177,7 +177,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                @if(!$user->end_date)
+
                                 <select name="status" class="selectpicker" data-background-color="rose"
                                     data-style="select-with-transition" data-size="7">
                                     <option disabled value="status">status</option>
@@ -185,10 +185,7 @@
                                     <option value="not active" @if($user->status==0)selected @endif>not active</option>
 
                                 </select>
-                                @else
-                                <label style="color:darkgrey;font-size:12px">Status</label>
-                                <input type="text" disabled class="form-control" name="status" value="not active">
-                                @endif
+
 
                                 <br>
                                 @error('role_name')
