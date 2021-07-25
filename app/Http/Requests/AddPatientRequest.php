@@ -24,9 +24,9 @@ class AddPatientRequest extends FormRequest
     public function rules()
     {
         return [
-            'f_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
-            'm_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
-            'l_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
+            'f_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:30',
+            'm_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:30',
+            'l_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:30',
             'birthday'=>'required',
             'gender'=>'required',
             'email'=>'email|nullable',
@@ -38,7 +38,7 @@ class AddPatientRequest extends FormRequest
     public function messages()
     {
         return [
-            
+
            'email'=>'يجب اخال الايميل بالصورة الصحيحة',
            'regex'=>'يجب ادخال نص خالي من الأرقام والاشارات',
             'required'=>'هذا الحقل مطلوب ',
@@ -50,7 +50,8 @@ class AddPatientRequest extends FormRequest
              'phone.max'=>'رقم الجوال مكون من 14 منازل على الأكثر',
              'string'=>'يجب ادخال نص',
              'numeric'=>'يجب ادخال رقم',
-             'min'=>'يجب أن لا تفل الفيمة عن 0'
+             'min'=>'يجب أن لا تفل الفيمة عن 0',
+            'max'=>'يجب أن لا يزيد عن 30 حرف',
 
         ];
     }

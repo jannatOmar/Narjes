@@ -80,6 +80,13 @@
                                 value="{{$test->analysis[0]->group->group_name}}">
                         </div>
                     </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Valide Analysis</label>
+                            <input type="checkbox" readonly class="form-control" name="valide"
+                                   >
+                        </div>
+                    </div>
                 </div>
                 @endforeach
                 @endisset
