@@ -27,6 +27,8 @@ namespace App\Http\Controllers\admin;
     use App\Http\Requests\EditResultRequest;
     use App\Http\Requests\confirmPaymentRequest;
     use Illuminate\Support\Facades\Config;
+    use Illuminate\Validation\Rule;
+
 
     use Carbon\Carbon;
         class patientManagmentController extends Controller
@@ -92,7 +94,13 @@ namespace App\Http\Controllers\admin;
     }
     public function store(AddPatientRequest $request){
         try{
+          // $firstNameUniqueRule = Rule::unique('patients')->where('l_name', request()->get('l_name', ''))->where('m_name', request()->get('m_name', ''));
 
+          // $rules = [
+          //     'f_name' => ['required', $firstNameUniqueRule],
+          //     'm_name' => 'required',
+          //     'l_name' => 'required',
+          // ];
             $table_id=4;
             $us = Auth::user()->username;
              $patient=Patient::create(

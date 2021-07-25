@@ -24,7 +24,6 @@ class userController extends Controller
     }
     public function create(){
         return view('admin.userManagment.addNewUser');
-
     }
     public function store(AddNewUserRequest $request){
         try{
@@ -110,7 +109,8 @@ class userController extends Controller
             }
             if($request->status=='not active' || $request->has('end_date')){
                 $status=0;
-            }if($request->status=='active'){
+            }
+            if($request->status=='active'){
                 $status=1;
             }
              $user=Users::selection()->with('role')->where('id',$user_id)->get();

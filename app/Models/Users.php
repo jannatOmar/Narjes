@@ -29,7 +29,8 @@ class Users extends Authenticatable
     }
     public function role(){
         return $this->belongsTo('App\Models\Role', 'role_id', 'role_id');
-    }public function login_out(){
+    }
+    public function login_out(){
         return $this->hasMany('App\Models\LOGIN_OUT', 'user_id', 'user_id');
     }
 

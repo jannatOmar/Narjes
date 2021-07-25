@@ -28,12 +28,7 @@
                                 <span class="sidebar-normal"> My Profile </span>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                  <a class="nav-link" href="pages/EditProfile.html">
-                    <span class="sidebar-mini"> EP </span>
-                    <span class="sidebar-normal"> Edit Profile </span>
-                  </a>
-                </li> -->
+                      
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.userManagment.create')}}">
                                 <span class="sidebar-mini"> ANU </span>

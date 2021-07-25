@@ -29,6 +29,7 @@ class ReportsController extends Controller
 
     public function showPatientReport(patientReportRequest $request){
      try{
+        
           $dateFrom=$request->dateFrom;
           $dateTo=$request->dateTo;
         if($dateTo==null){
@@ -37,7 +38,7 @@ class ReportsController extends Controller
         if($dateFrom > $dateTo){
             return redirect()->route('admin.report.patient')->with(['error'=>' يجب ادخال تاريخ البداية اقل من النهاية ']);
         }
-        $ids=Analysis_requierd::select('financial_id','patient_id')->distinct()->whereBetween('time', [$dateFrom, $dateTo])->get();
+          $ids=Analysis_requierd::select('financial_id','patient_id')->distinct()->whereBetween('time', [$dateFrom, $dateTo])->get();
             if(count($ids) == 0 ){
                 return redirect()->route('admin.report.patient')->with(['error'=>' لا يوجد مرضى ضمن الفترة المدخلة']);
             }
@@ -49,6 +50,7 @@ class ReportsController extends Controller
             $sumtotalPrice=0;
             $countP=0;
             $countF=0;
+
             foreach($ids as $index=>$id){
                if(!in_array($id->financial_id, $idF)){
                 $idF[]=$id->financial_id;
@@ -140,10 +142,8 @@ class ReportsController extends Controller
     }
     public function ShowDiscount(discountReportRequest $request){
         try{
-
             $dateFrom=$request->dateFrom;
             $dateTo=$request->dateTo;
-            // return $dateFrom. " ".$dateTo;
 
             if($dateTo==null){
                 $dateTo = Carbon::now();
@@ -151,12 +151,13 @@ class ReportsController extends Controller
             if($dateFrom > $dateTo){
                 return redirect()->route('admin.report.showDiscount')->with(['error'=>' يجب ادخال تاريخ البداية اقل من النهاية ']);
             }
+            $discounts=Discount::selection()->whereBetween('time',[$dateFrom, $dateTo])->get();
+
+            if(count($discounts) == 0 ){
+                return redirect()->route('admin.report.showDiscount')->with(['error'=>' لا يوجد تحاليل ضمن الفترة المدخلة']);
+            }
          $count=Discount::select(DB::raw('sum(company_finantial_recivable) as total1'),DB::raw('sum(laboratory_finantial_recivable) as total2'))->whereBetween('time', [$dateFrom, $dateTo])->get();
          $countPatient=financial_managment::groupBy('discount_id')->select('discount_id',DB::raw('count(patient_id) as countPatient'))->whereBetween('time', [$dateFrom, $dateTo])->get();
-
-
-         $discounts=Discount::selection()->whereBetween('time',[$dateFrom, $dateTo])->get();
-
          $count1=$count[0]->total1;
          $count2=$count[0]->total2;
         return view('admin.reports.discountReport',compact('discounts','dateFrom','dateTo','count1','count2','countPatient'));
