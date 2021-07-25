@@ -14,7 +14,7 @@
                     <i class="material-icons">description</i>
                 </div>
                 <h4 class="card-title">Reports of Analysis</h4>
-                <br> 
+                <br>
                 @include('alert.success')
                 @include('alert.errors')
 
@@ -58,6 +58,7 @@
                         <th class="text-center">#</th>
                         <th style="width: 30%;">Analysis Name</th>
                         <th> Count </th>
+                        <th> Validate </th>
 
                     </tr>
 
@@ -65,16 +66,18 @@
 
                     <tbody>
                     <?php $i=0 ?>
+                    <?php $j=0 ?>
                     @isset($analysis)
+                    @isset($val_an)
                         @foreach($analysis as $a)
                     <tr>
-
                         <td>{{++$i}}</td>
                         <td>{{$a->analysis[0]->analysis_name}}</td>
                         <td>{{$a->name_count}}</td>
 
                     </tr>
                         @endforeach
+                    @endisset
                     @endisset
                     @isset($not_used)
                         @foreach($not_used as $a)
@@ -83,6 +86,11 @@
                                 <td>{{++$i}}</td>
                                 <td>{{$a->analysis_name}}</td>
                                 <td> 0 </td>
+                                @if($a->valid == 1)
+                                <td> valid </td>
+                                @else
+                                    <td> invalid </td>
+                                @endif
 
                             </tr>
                         @endforeach

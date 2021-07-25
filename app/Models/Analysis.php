@@ -10,7 +10,7 @@ class Analysis extends Authenticatable
     protected  $table='analysis';
     public $timestamps=true;
     protected $fillable = [
-        	'group_id',	'parent_id','analysis_name','price','user_id','update_user_id',
+        	'group_id',	'parent_id','analysis_name','price','valid','user_id','update_user_id',
 
     ];
 
@@ -24,7 +24,7 @@ class Analysis extends Authenticatable
     ];
 
      public function scopeSelection($query){
-         return $query->select('analysis_id','group_id','parent_id','analysis_name','price','created_at','updated_at','user_id','update_user_id');
+         return $query->select('analysis_id','group_id','parent_id','valid','analysis_name','price','created_at','updated_at','user_id','update_user_id');
      }
      public function parent(){
         return $this->hasMany(self::class,'perant_id');

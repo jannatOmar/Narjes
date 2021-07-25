@@ -25,9 +25,9 @@ class addNewDoctorRequest extends FormRequest
     {
         return [
 
-            'first_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
-            'middle_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
-            'last_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
+            'first_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:30',
+            'middle_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:30',
+            'last_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:30',
             'email'=>'required|email|unique:doctor,email'.$this->doctor_id,
             'address'=>'required',
             'phone'=>'required|digits_between:10,14|unique:doctor,phone'.$this->doctor_id,
@@ -41,7 +41,7 @@ class addNewDoctorRequest extends FormRequest
             'email'=>'يجب ادخال الايميل بالصورة الصحيحة',
             'required'=>'هذا الحقل مطلوب ',
             'regex'=>'يجب ادخال نص خالي من الأرقام والاشارات',
-
+            'max'=>'يجب أن لا يزيد عن 30 حرف',
             'string'=>'يجب ادخال نص',
             'email.unique'=>'البريد الاكتروني مستخدم من قبل',
             'phone.unique'=>' رقم الجوال مستخدم من قبل',

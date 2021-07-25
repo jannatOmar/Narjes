@@ -284,6 +284,12 @@ namespace App\Http\Controllers\manager;
   }
   public function saveResult(storeResultRequest $request,$analysis_required_id,$analysis_id){
        try{
+           $valid = 1;
+           if($request->has('invalide'))
+               $valid=0;
+
+           Analysis::where('analysis_id',$analysis_id)->update(['valid'=>$valid]);
+           // return $valid;
            $table_id=4;
            $us = Auth::user()->username;
            $p_id = Analysis_requierd::where('id',$analysis_required_id)->select('patient_id')->get();
