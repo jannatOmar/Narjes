@@ -93,9 +93,12 @@ class ReportsController extends Controller
         $sum=0;
         $analysis_name="";
 
+
         try {
 
             $analysis = Analysis_requierd::select('analysis_id', DB::raw('count(analysis_id) as name_count'))->with('analysis')->whereBetween('time', [$from, $to])->distinct()->groupBy('analysis_id')->get();
+           // return $analysis[0]->analysis[0]->valid;
+           // return $analysis;
 
             if(count($analysis) == 0 ){
                 return redirect()->route('admin.report.analysis')->with(['error'=>' لا يوجد تحاليل ضمن الفترة المدخلة']);
@@ -124,9 +127,11 @@ class ReportsController extends Controller
             });
 
             // return $grouped;
-            $not_used = Analysis::select('analysis_id','analysis_name')->whereNotIn('analysis_id', $analysis)->distinct()->get();
-          //   return $not_used;
-            return view('admin.reports.analysisReport',compact('analysis','grouped','not_used','from','to','high','sum','analysis_name'));
+            $not_used = Analysis::select('analysis_id','analysis_name','valid')->whereNotIn('analysis_id', $analysis)->distinct()->get();
+            // return $not_used;
+            $val_an = Analysis::select('analysis_id','analysis_name','valid')->whereNotIn('analysis_id', $not_used)->distinct()->get();
+           // return $val_an;
+            return view('admin.reports.analysisReport',compact('analysis','grouped','not_used','from','to','high','sum','analysis_name','val_an'));
 
         }catch(\Exception $ex){
             return redirect()->back()->with(['error'=>' هناك خطأ ما يرجى اعادة المحاولة']);

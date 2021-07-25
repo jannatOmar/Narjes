@@ -82,8 +82,8 @@
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Valide Analysis</label>
-                            <input type="checkbox" readonly class="form-control" name="valide"
+                            <label class="bmd-label-floating">Invalide Analysis?</label>
+                            <input  type="checkbox"  class="form-control" name="invalide"
                                    >
                         </div>
                     </div>

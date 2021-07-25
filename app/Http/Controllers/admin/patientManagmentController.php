@@ -285,6 +285,14 @@ namespace App\Http\Controllers\admin;
   }
   public function saveResult(storeResultRequest $request,$analysis_required_id,$analysis_id){
        try{
+            $valid = 1;
+           if($request->has('invalide'))
+               $valid=0;
+
+            Analysis::where('analysis_id',$analysis_id)->update(['valid'=>$valid]);
+           // Analysis_requierd::where('analysis_id',$analysis_required_id)->update(['valid'=>$valid]);
+          // return $valid;
+
            $table_id=4;
            $us = Auth::user()->username;
            $p_id = Analysis_requierd::where('id',$analysis_required_id)->select('patient_id')->get();
@@ -586,7 +594,7 @@ public function confirmDiscount(Request $request){
 
                    $patient_id=Patient::select('patient_id')->where(DB::raw("CONCAT(f_name,' ',m_name,' ',l_name)"),$patient_name)->first();
                    $doctor_id=Doctor::select('doctor_id')->where(DB::raw("CONCAT(f_name,' ',m_name,' ',l_name)"),$doctor_name)->first();
-                  
+
                    foreach ( $test as $t) {
                            $analysis[] = Analysis::select('analysis_id', 'analysis_name', 'price')->where('analysis_name', $t)->get();
                    }
@@ -684,7 +692,7 @@ public function confirmPayment(confirmPaymentRequest $request){
            $mess = "";
 
            $an = implode(" , ",$test);
-           
+
            $patient_id=Patient::selection()->where(DB::raw("CONCAT(f_name,' ',m_name,' ',l_name)"),$patient_name)->first();
 
            $p_name = $patient_id->f_name." ".$patient_id->m_name." ".$patient_id->l_name;

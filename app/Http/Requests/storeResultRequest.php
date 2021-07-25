@@ -28,7 +28,8 @@ class storeResultRequest extends FormRequest
             'Data.*'=>'required',
             'Data_Op.*'=>'required',
             'input_Op.*'=>'required|string',
-            'input_name.*'=>'required|string'
+            'input_name.*'=>'required|string',
+
 
         ];
     }
