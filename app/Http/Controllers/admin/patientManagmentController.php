@@ -283,20 +283,32 @@ namespace App\Http\Controllers\admin;
             $data[]= array($op->input[0]->input_name => $opt);
             $opt=[];
         }
-         $last_date=All_Results::select(DB::raw('MAX(created_at) as last_date'))->get();
-          $last_result=All_Results::select('data')->where('created_at',$last_date[0]->last_date)->get();
+         $last_date=All_Results::whereHas('required_analysis', function($q) use($analysis_id){
+          $q->where('analysis_id', $analysis_id);
+           })
+           ->select(DB::raw('MAX(created_at) as last_date'))->get();
+          $last_result=All_Results::select('data')->
+            whereHas('required_analysis', function($q) use($analysis_id){
+            $q->where('analysis_id', $analysis_id);
+             })
+          ->where(
+            [
+              'created_at'=>$last_date[0]->last_date,
+            ]
+          )->get();
 
         return view('admin.patientmanagment.enterResult',compact(['analysis','analysis_id','patient','age','normal_range','data','analysis_required_id','last_result']));
      }catch(\Exception $ex){
+       return $ex;
      return redirect()->back()->with(['error'=>'هناك خطأ ما يرجى اعادة المحاولة']);
      }
   }
   public function saveResult(storeResultRequest $request,$analysis_required_id,$analysis_id){
        try{
             $valid = 1;
-           if($request->has('invalide'))
+           if($request->has('invalide')){
                $valid=0;
-
+           }
             Analysis::where('analysis_id',$analysis_id)->update(['valid'=>$valid]);
            // Analysis_requierd::where('analysis_id',$analysis_required_id)->update(['valid'=>$valid]);
           // return $valid;
@@ -387,6 +399,7 @@ namespace App\Http\Controllers\admin;
 
     }catch(\Exception $ex){
         DB::rollback();
+        return $ex;
         return redirect()->back()->with(['error'=>' هناك خطأ ما يرجى اعادة المحاولة']);
      }
 }
