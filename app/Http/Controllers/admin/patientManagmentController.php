@@ -283,6 +283,8 @@ namespace App\Http\Controllers\admin;
             $data[]= array($op->input[0]->input_name => $opt);
             $opt=[];
         }
+
+        
          $last_date=All_Results::whereHas('required_analysis', function($q) use($analysis_id){
           $q->where('analysis_id', $analysis_id);
            })
