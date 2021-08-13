@@ -67,17 +67,21 @@
                     <tbody>
                     <?php $i=0 ?>
                     <?php $j=0 ?>
-                    @isset($analysis)
-                    @isset($val_an)
-                        @foreach($analysis as $a)
+                    @isset($ana)
+
+                        @foreach($ana as $a)
                     <tr>
                         <td>{{++$i}}</td>
-                        <td>{{$a->analysis[0]->analysis_name}}</td>
+                        <td>{{$a->analysis_name}}</td>
                         <td>{{$a->name_count}}</td>
-
+                        @if($a->valid == 1)
+                            <td> valid </td>
+                        @else
+                            <td> invalid </td>
+                        @endif
                     </tr>
                         @endforeach
-                    @endisset
+
                     @endisset
                     @isset($not_used)
                         @foreach($not_used as $a)

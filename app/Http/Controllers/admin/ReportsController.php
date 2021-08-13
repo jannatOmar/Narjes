@@ -29,7 +29,7 @@ class ReportsController extends Controller
 
     public function showPatientReport(patientReportRequest $request){
      try{
-        
+
           $dateFrom=$request->dateFrom;
           $dateTo=$request->dateTo;
         if($dateTo==null){
@@ -96,7 +96,13 @@ class ReportsController extends Controller
 
 
         try {
-
+            $ana = DB::table('Analysis_required')
+                ->join('Analysis', 'Analysis.analysis_id', '=', 'analysis_required.analysis_id')
+                ->select('Analysis_required.analysis_id', DB::raw('count(Analysis_required.analysis_id) as name_count'),'Analysis.analysis_name','Analysis.valid')
+                ->whereBetween('time', [$from, $to])
+                ->groupBy('Analysis_required.analysis_id')
+                ->get();
+          //  return $ana;
             $analysis = Analysis_requierd::select('analysis_id', DB::raw('count(analysis_id) as name_count'))->with('analysis')->whereBetween('time', [$from, $to])->distinct()->groupBy('analysis_id')->get();
            // return $analysis[0]->analysis[0]->valid;
            // return $analysis;
@@ -132,9 +138,10 @@ class ReportsController extends Controller
             // return $not_used;
             $val_an = Analysis::select('analysis_id','analysis_name','valid')->whereNotIn('analysis_id', $not_used)->distinct()->get();
            // return $val_an;
-            return view('admin.reports.analysisReport',compact('analysis','grouped','not_used','from','to','high','sum','analysis_name','val_an'));
+            return view('admin.reports.analysisReport',compact('analysis','grouped','not_used','from','to','high','sum','analysis_name','val_an','ana'));
 
         }catch(\Exception $ex){
+            return $ex;
             return redirect()->back()->with(['error'=>' هناك خطأ ما يرجى اعادة المحاولة']);
         }
 
