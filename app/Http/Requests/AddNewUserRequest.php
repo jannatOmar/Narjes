@@ -34,7 +34,7 @@ class AddNewUserRequest extends FormRequest
             'email'=>'required|email|max:100|unique:user,email,'.$this->id,
             'address'=>'required|max:100',
             'password'=>'required',
-            'username'=>'required|max:20|unique:user,username,'.$this->id,
+            'username'=>'required|max:50|unique:user,username,'.$this->id,
             'phone'=>'required|digits_between:10,14|unique:user,phone,'.$this->id,
 
         ];
@@ -59,7 +59,7 @@ class AddNewUserRequest extends FormRequest
             'email.max'=>'يجب أن لا يزيد عن 100 حرف',
             'address.max'=>'يجب أن لا يزيد عن 100 حرف',
             'password.max'=>'يجب أن لا يزيد عن 8 حرف',
-            'username.max'=>'يجب أن لا يزيد عن 20 حرف',
+            'username.max'=>'يجب أن لا يزيد عن 50 حرف',
              'min'=>'يجب أن لا تفل الفيمة عن 0'
 
         ];

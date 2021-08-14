@@ -23,8 +23,8 @@ class LoginController extends Controller
       $username=$request->input('username');
        $pass=$request->input('password');
       
-        $user=Users::where('username',$username)->selection()->first();
-       if($user->status==1){
+      $user=Users::where('username',$username)->selection()->first();
+        if($user->status==1){
          $role_id=$user->role_id;
         if($role_id==1){
             $permetion='admin';
@@ -35,6 +35,7 @@ class LoginController extends Controller
         }else if($role_id==4){
             $permetion='accountant';
         }
+        
        $req=auth()->guard($permetion)->attempt(['username'=>$username,'password'=>$pass]);
           if($req){
             //login tabel

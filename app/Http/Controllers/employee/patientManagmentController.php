@@ -184,8 +184,9 @@ namespace App\Http\Controllers\employee;
             $data[]= array($op->input[0]->input_name => $opt);
             $opt=[];
         }
-        $last_date=All_Results::whereHas('required_analysis', function($q) use($analysis_id){
-          $q->where('analysis_id', $analysis_id);
+        $last_date=All_Results::orderBy('created_at', 'asc')->whereHas('required_analysis', function($q) use($analysis_id,$patient_id){
+          $q->where('analysis_id', $analysis_id)->where('patient_id',$patient_id);
+         
            })
            ->select(DB::raw('MAX(created_at) as last_date'))->get();
           $last_result=All_Results::select('data')->

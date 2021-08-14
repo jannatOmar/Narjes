@@ -220,6 +220,21 @@ namespace App\Http\Controllers\admin;
           $age=\Carbon\Carbon::parse($patient->birthday)->diff(\Carbon\Carbon::now())->format('%y');
 
 
+            // $last_date=All_Results::orderBy('created_at', 'asc')->whereHas('required_analysis', function($q) use($analysis_id,$patient_id){
+            // $q->where('analysis_id', $analysis_id)->where('patient_id',$patient_id);
+           
+            //  })
+            //  ->select(DB::raw('MAX(created_at) as last_date'))->get();
+
+            // $last_result=All_Results::select('data')->
+            //   whereHas('required_analysis', function($q) use($analysis_id){
+            //   $q->where('analysis_id', $analysis_id);
+            //    })
+            // ->where(
+            //   [
+            //     'created_at'=>$last_date[0]->last_date,
+            //   ]
+            // )->get();
           
         return view('admin.patientmanagment.result',compact(['results','normal_range','doctor_name','patient','age']));
        }catch(\Exception $ex){
@@ -285,8 +300,9 @@ namespace App\Http\Controllers\admin;
             $data[]= array($op->input[0]->input_name => $opt);
             $opt=[];
         }
-         $last_date=All_Results::whereHas('required_analysis', function($q) use($analysis_id){
-          $q->where('analysis_id', $analysis_id);
+        $last_date=All_Results::orderBy('created_at', 'asc')->whereHas('required_analysis', function($q) use($analysis_id,$patient_id){
+          $q->where('analysis_id', $analysis_id)->where('patient_id',$patient_id);
+         
            })
            ->select(DB::raw('MAX(created_at) as last_date'))->get();
           $last_result=All_Results::select('data')->
