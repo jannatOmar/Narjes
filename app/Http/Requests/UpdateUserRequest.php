@@ -28,7 +28,6 @@ class UpdateUserRequest extends FormRequest
             'm_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
             'l_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
             'role_name'=>'required',
-            
             'age'=>'required|numeric|min:0',
             'email'=>'required|email|unique:user,email,'.$this->id,
             'address'=>'required',

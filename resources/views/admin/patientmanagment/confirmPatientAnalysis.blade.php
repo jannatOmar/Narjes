@@ -150,6 +150,9 @@
                         <div class="form-group">
                             <label class="bmd-label-floating">Comments</label>
                             <input name="comments" type="text" value="{{old('comments')}}"  class="form-control">
+                            @error('comments')
+                            <span class="text-danger" style="margin: 34px;">{{$message}} </span>
+                            @enderror
                         </div>
                     </div>
                 </div>

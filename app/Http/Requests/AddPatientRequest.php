@@ -29,9 +29,10 @@ class AddPatientRequest extends FormRequest
             'l_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:30',
             'birthday'=>'required',
             'gender'=>'required',
-            'email'=>'email|nullable',
-            'address'=>'required',
-            'phone'=>'min:10|max:14|nullable',
+            'email'=>'email|nullable|max:100',
+            'address'=>'required|max:100',
+            'phone'=>'digits_between:10,14|nullable',
+            
 
         ];
     }
@@ -49,9 +50,17 @@ class AddPatientRequest extends FormRequest
              'phone.min'=>' رقم الجوال مكون من 10 منازل على الأقل',
              'phone.max'=>'رقم الجوال مكون من 14 منازل على الأكثر',
              'string'=>'يجب ادخال نص',
+             
              'numeric'=>'يجب ادخال رقم',
              'min'=>'يجب أن لا تفل الفيمة عن 0',
-            'max'=>'يجب أن لا يزيد عن 30 حرف',
+            'f_name.max'=>'يجب أن لا يزيد عن 30 حرف',
+            'm_name.max'=>'يجب أن لا يزيد عن 30 حرف',
+            'l_name.max'=>'يجب أن لا يزيد عن 30 حرف',
+            'email.max'=>'يجب أن لا يزيد عن 100 حرف',
+            'address.max'=>'يجب أن لا يزيد عن 100 حرف',
+            'phone.digits_between'=>'رقم الجوال مكون من 10 الى 14 رقم',
+
+
 
         ];
     }

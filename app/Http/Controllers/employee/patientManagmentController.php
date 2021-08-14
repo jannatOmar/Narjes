@@ -184,7 +184,20 @@ namespace App\Http\Controllers\employee;
             $data[]= array($op->input[0]->input_name => $opt);
             $opt=[];
         }
-        return view('employee.patientmanagment.enterResult',compact(['analysis','analysis_id','patient','age','normal_range','data','analysis_required_id']));
+        $last_date=All_Results::whereHas('required_analysis', function($q) use($analysis_id){
+          $q->where('analysis_id', $analysis_id);
+           })
+           ->select(DB::raw('MAX(created_at) as last_date'))->get();
+          $last_result=All_Results::select('data')->
+            whereHas('required_analysis', function($q) use($analysis_id){
+            $q->where('analysis_id', $analysis_id);
+             })
+          ->where(
+            [
+              'created_at'=>$last_date[0]->last_date,
+            ]
+          )->get();
+        return view('employee.patientmanagment.enterResult',compact(['analysis','analysis_id','patient','age','normal_range','data','analysis_required_id','last_result']));
      }catch(\Exception $ex){
      return redirect()->back()->with(['error'=>'هناك خطأ ما يرجى اعادة المحاولة']);
      }

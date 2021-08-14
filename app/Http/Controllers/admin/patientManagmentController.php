@@ -219,6 +219,8 @@ namespace App\Http\Controllers\admin;
          $patient=Patient::where('patient_id',$patient_id)->select(DB::raw("CONCAT(f_name,' ',m_name,' ',l_name) AS PATIENTNAME"),'gender','birthday','address')->first();
           $age=\Carbon\Carbon::parse($patient->birthday)->diff(\Carbon\Carbon::now())->format('%y');
 
+
+          
         return view('admin.patientmanagment.result',compact(['results','normal_range','doctor_name','patient','age']));
        }catch(\Exception $ex){
         return redirect()->back()->with(['error'=>'هناك خطأ ما يرجى اعادة المحاولة']);
@@ -283,8 +285,6 @@ namespace App\Http\Controllers\admin;
             $data[]= array($op->input[0]->input_name => $opt);
             $opt=[];
         }
-
-        
          $last_date=All_Results::whereHas('required_analysis', function($q) use($analysis_id){
           $q->where('analysis_id', $analysis_id);
            })
@@ -313,7 +313,7 @@ namespace App\Http\Controllers\admin;
            }
             Analysis::where('analysis_id',$analysis_id)->update(['valid'=>$valid]);
            // Analysis_requierd::where('analysis_id',$analysis_required_id)->update(['valid'=>$valid]);
-          // return $valid;
+           // return $valid;
 
            $table_id=4;
            $us = Auth::user()->username;

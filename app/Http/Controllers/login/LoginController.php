@@ -21,7 +21,7 @@ class LoginController extends Controller
      try{
     // $remember_me=$request->has('remember_me')?'true':'false';
       $username=$request->input('username');
-      $pass=$request->input('password');
+       $pass=$request->input('password');
       
         $user=Users::where('username',$username)->selection()->first();
        if($user->status==1){
@@ -35,8 +35,8 @@ class LoginController extends Controller
         }else if($role_id==4){
             $permetion='accountant';
         }
-        $req=auth()->guard($permetion)->attempt(['username'=>$username,'password'=>$pass]);
-    if($req){
+       $req=auth()->guard($permetion)->attempt(['username'=>$username,'password'=>$pass]);
+          if($req){
             //login tabel
             LOGIN_OUT::create(
                 [

@@ -110,7 +110,7 @@ class userController extends Controller
             if($request->status=='not active' || $request->has('end_date')){
                 $status=0;
             }
-            if($request->status=='active'){
+            if($request->status=='active'&& !$request->has('end_date')){
                 $status=1;
             }
              $user=Users::selection()->with('role')->where('id',$user_id)->get();
@@ -122,6 +122,7 @@ class userController extends Controller
              $userInformation="[ ".$user[0]->role->role_name." , ".$user[0]->f_name." , ".$user[0]->m_name." , ".$user[0]->l_name." , ".$user[0]->age." , ".
             $user[0]->address." , ".$user[0]->phone." , ".$user[0]->email." , ".$user[0]->username." , ".$user[0]->end_date." , ".$sta." ]";
             // return Users::selection()->where('id',$user_id)->get();
+          
             Users::where('id',$user_id)
            ->update(
               [

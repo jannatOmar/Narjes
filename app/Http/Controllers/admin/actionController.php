@@ -29,8 +29,8 @@ class actionController extends Controller
       }
 
        $dateFrom=$dateFrom.' 00:00:00';
-       $dateTo=$dateTo.' 00:00:00';
-        if($table!=6){
+       $dateTo=$dateTo.' 12:59:59';
+       if($table!=6){
            $data=Actions::selection()->with('user')->where('table_id',$table)->whereBetween('created_at', [$dateFrom, $dateTo])->get();
         }else{
            $data=Actions::selection()->with('user')->whereBetween('created_at', [$dateFrom, $dateTo])->get();
@@ -59,13 +59,12 @@ class actionController extends Controller
               return redirect()->route('admin.action.logging')->with(['error'=>' يجب ادخال تاريخ البداية اقل من النهاية ']);
           }
           $dateFrom=$dateFrom.' 00:00:00';
-          $dateTo=$dateTo.' 00:00:00';
-           $data=LOGIN_OUT::selection()->with('user')->whereBetween('created_at', [$dateFrom, $dateTo])->get();
+          $dateTo=$dateTo.' 12:59:59';
+          $data=LOGIN_OUT::selection()->with('user')->whereBetween('created_at', [$dateFrom, $dateTo])->get();
               if(count($data) == 0 ){
                   return redirect()->route('admin.action.logging')->with(['error'=>' لا يوجد نشاط للموظفين ضمن الفترة المدخلة']);
               }
               return view('admin.actions.login_out',compact('data','dateFrom','dateTo'));
-
        }catch(\Exception $ex){
            return $ex;
           return redirect()->back()->with(['error'=>' هناك خطأ ما يرجى اعادة المحاولة']);

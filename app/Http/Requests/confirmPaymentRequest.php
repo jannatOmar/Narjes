@@ -27,7 +27,8 @@ class confirmPaymentRequest extends FormRequest
             'total'=>'required|numeric|min:0',
             'p_name'=>'required|string',
             'company'=>'required',
-            'after_discount'=>'required'
+            'after_discount'=>'required|max:10',
+            'comments'=>'max:300'
         ];
     }
     public function  messages(){
@@ -35,7 +36,9 @@ class confirmPaymentRequest extends FormRequest
             'required'=>'هذا الحقل مطلوب ',
             'string'=>'يجب ادخال نص',
             'numeric'=>'هذا الحقل أرقام فقط',
-            'min'=>'يجب أن لا تفل الفيمة عن 0'
+            'min'=>'يجب أن لا تفل الفيمة عن 0',
+            'after_discount.max'=>'يجب أن لا يزيد الطول عن 10',
+            'comments.max'=>'يجب أن لا تزيد عن300 حرف'
         ];
     }
 }

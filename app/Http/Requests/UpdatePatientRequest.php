@@ -24,14 +24,14 @@ class UpdatePatientRequest extends FormRequest
     public function rules()
     {
         return [
-            'f_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
-            'm_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
-            'l_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
+            'f_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:30',
+            'm_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:30',
+            'l_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:30',
             'gender'=>'required',
             'birthday'=>'required|date',
-            'email'=>'email',
-            'address'=>'required',
-            'phone'=>'min:10|max:14',
+            'email'=>'email|nullable|max:100',
+            'address'=>'required|max:100',
+            'phone'=>'digits_between:10,14',
         ];
     }
     public function messages()
@@ -45,7 +45,13 @@ class UpdatePatientRequest extends FormRequest
              'string'=>'يجب ادخال نص',
              'numeric'=>'يجب ادخال رقم',
              'min'=>'يجب أن لا تفل الفيمة عن 0',
-             'date'=>' mm/dd/yyyyيجب ادخال التاريخ بصورة صحيحة'
+             'date'=>' mm/dd/yyyyيجب ادخال التاريخ بصورة صحيحة',
+             'f_name.max'=>'يجب أن لا يزيد عن 30 حرف',
+             'm_name.max'=>'يجب أن لا يزيد عن 30 حرف',
+             'l_name.max'=>'يجب أن لا يزيد عن 30 حرف',
+             'email.max'=>'يجب أن لا يزيد عن 100 حرف',
+             'address.max'=>'يجب أن لا يزيد عن 100 حرف',
+             'phone.digits_between'=>'رقم الجوال مكون من 10 الى 14 رقم',
 
               
         ];

@@ -25,11 +25,11 @@ class addNewDiscountRequest extends FormRequest
     {
         return [
             //
-            'company_name'=>'required|string|regex:/^[a-zA-Z]+$/u',
+            'company_name'=>'required|string|regex:/^[a-zA-Z]+$/u|max:100',
             'discount_percentage'=>'required|numeric|min:0|max:100',
-            'discount_type'=>'required|string|regex:/^[a-zA-Z]+$/u',
-            'company_finantial_recivable'=>'required|numeric|min:0',
-            'laboratory_finatial_recivable'=>'required|numeric|min:0',
+            'discount_type'=>'required|string|regex:/^[a-zA-Z]+$/u|max:100',
+            'company_finantial_recivable'=>'required|numeric|min:0|max:100',
+            'laboratory_finatial_recivable'=>'required|numeric|min:0|max:100',
         ];
     }
     public function messages()
@@ -41,6 +41,8 @@ class addNewDiscountRequest extends FormRequest
         'required'=>'هذا الحقل مطلوب',
         'min'=>'يجب أن لا تقل القيمة عن 0',
         'max'=>' يجب أن لا تزيد القيمة عن 100',
+        'company_name.max'=>' يجب أن لا يزيد الطول عن 100',
+        'discount_type.max'=>' يجب أن لا يزيد الطول عن 100',
    ];
     }
 }

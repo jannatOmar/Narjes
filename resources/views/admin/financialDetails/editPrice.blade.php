@@ -1,7 +1,10 @@
 @extends('layouts.admin')
 @section('title','Edit Price')
 @section('content')
-
+<style>
+       .form-control:read-only {
+    background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgb(255, 255, 255) 1px)}
+    </style>
 <div class="row">
     <div class="col-md-8" style="margin: auto;">
         <div class="card" style="width:120%; margin-left: -40px;">
@@ -26,7 +29,7 @@
                             <div class="form-group">
                                 <label class="bmd-label-floating">Analysis name</label>
                                 <input name="analysis" type="text" class="form-control"
-                                    value="{{$analysis->analysis_name}}" disabled>
+                                    value="{{$analysis->analysis_name}}" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">

@@ -56,6 +56,7 @@
                 <br>
                 @isset($analysis)
                 @foreach($analysis as $d=>$test)
+
                 <div class="row">
 
                     <div class="col-md-3">
@@ -175,7 +176,17 @@
                 @endforeach
                 @endisset
 
-
+               @isset($last_result)
+                   @foreach($last_result as $index=>$data)
+                   <div class="col-md-2">
+                        <div class="form-group">
+                          <label for='{{$data->data}}' class="bmd-label-floating">Last Result</label>
+                          <input type='text' readonly name='last_result[]' class="form-control"
+                                value="{{$data->data}}">
+                        </div>
+                    </div>
+                   @endforeach
+                  @endisset
                 <br><br>
                 <div class="row justify-content-center">
                     <button type="submit" class="btn btn-rose  col-md-3 "> Save Result</button>

@@ -25,7 +25,7 @@ class storeResultRequest extends FormRequest
     {
         return [
             //
-            'Data.*'=>'required',
+            'Data.*'=>'required|max:50',
             'Data_Op.*'=>'required',
             'input_Op.*'=>'required|string',
             'input_name.*'=>'required|string',
@@ -37,7 +37,8 @@ class storeResultRequest extends FormRequest
     {
         return[
         'required'=>'هذا الحقل مطلوب',
-        'string'=>'يجب ادخال نص'
+        'string'=>'يجب ادخال نص',
+        'max'=>'يجب أن لا يزيد الطول عن 50'
 
    ];
     }
