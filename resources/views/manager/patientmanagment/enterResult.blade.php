@@ -84,11 +84,14 @@
                 @endisset
                 <br>
                 <br>
+                <div>
+                <div style="display:inline-block;width: 65%;">
+
                 @isset($normal_range)
                 @foreach($normal_range as $key => $tests)
 
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="row"  style="display: inline-block; max-width: 100%;">
+                    <div class="col-md-2" style="display:inline-block;max-width: 22%;">
                         <div class="form-group">
                             <label for='{{$tests->input->input_name}}' class="bmd-label-floating">Input Name</label>
                             <input type='text' readonly name='input_name[]' class="form-control"
@@ -98,7 +101,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2" style="display:inline-block;max-width: 22%;">
                         <div class="form-group">
                             <label class="bmd-label-floating">Data</label>
                             <input type='text' name='Data[]' class="form-control" value="{{ old('Data.'.$key) }}">
@@ -110,7 +113,7 @@
                     
                     @isset($patient)
                     @if($patient->gender=="male")
-                    <div class="col-md-3">
+                    <div class="col-md-2" style="display:inline-block;max-width: 22%;">
                         <div class="form-group">
                             <label class="bmd-label-floating">Male-Range</label>
                             <input type='text' name='max_normal[]' readonly class="form-control"
@@ -122,7 +125,7 @@
                     
                     @isset($patient)
                     @if($patient->gender=="female")
-                    <div class="col-md-3">
+                    <div class="col-md-2" style="display:inline-block;max-width: 22%;">
                         <div class="form-group">
                             <label class="bmd-label-floating">Female-Range</label>
                             <input type='text' name='min_normal[]' readonly class="form-control"
@@ -131,7 +134,7 @@
                     </div>
                     @endif
                     @endisset
-                    <div class="col-md-3">
+                    <div class="col-md-2" style="display:inline-block;max-width: 22%;">
                         <div class="form-group">
                             <label class="bmd-label-floating">Unit</label>
                             <input type='text' name='unit[]' readonly class="form-control"
@@ -145,8 +148,8 @@
                 @isset($data)
                 @foreach($data as $key => $op)
                 @foreach($op as $key1 => $op1)
-                <div class="row">
-                    <div class="col-md-3">
+                <div class="row"  style="display: block;max-width: 100%;margin-bottom: -10px;">
+                    <div class="col-md-2"  style="display:inline-block;max-width: 44%;">
                         <div class="form-group">
                             <label for='' class="bmd-label-floating">Input Name</label>
                             <input type='text' readonly name='input_Op[]' class="form-control" value="{{$key1}}">
@@ -156,7 +159,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-2"  style="display:inline-block;max-width: 44%;">
                         <div class="form-group">
                             <select class="selectpicker" name="Data_Op[]" data-style="select-with-transition"
                                 title="Result" data-size="7">
@@ -174,11 +177,12 @@
                 @endforeach
                 @endforeach
                 @endisset
-
+               </div>
+             <div class="col" style="display: inline-block;width: 20%;padding: 0;">
 
                 @isset($last_result)
                    @foreach($last_result as $index=>$data)
-                   <div class="col-md-2">
+                   <div class="col-md-2" style="max-width: 100%;">
                         <div class="form-group">
                           <label for='{{$data->data}}' class="bmd-label-floating">Last Result</label>
                           <input type='text' readonly name='last_result[]' class="form-control"
@@ -187,7 +191,9 @@
                     </div>
                    @endforeach
                   @endisset
-
+             </div>
+        
+        </div>
 
                 <br><br>
                 <div class="row justify-content-center">

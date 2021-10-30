@@ -26,5 +26,5 @@ class NormalRange extends Model
     public function  input(){
         return $this->hasOne('App\Models\Inputs', 'input_id','input_id');
     }
-
+    
 }
