@@ -10,7 +10,7 @@ use App\Http\Requests\updatePriceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class financialController extends Controller
+class FinancialController extends Controller
 {
     public function index (){
         $analysis = Analysis::select('analysis_id', 'analysis_name', 'price')->paginate(PAGINATION_COUNT);

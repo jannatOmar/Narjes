@@ -11,7 +11,7 @@ use App\Http\Requests\AddNewUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use DB;
 
-class userController extends Controller
+class UserController extends Controller
 {
     public function index(){
         // if (auth()->check()) {}
@@ -122,7 +122,7 @@ class userController extends Controller
              $userInformation="[ ".$user[0]->role->role_name." , ".$user[0]->f_name." , ".$user[0]->m_name." , ".$user[0]->l_name." , ".$user[0]->age." , ".
             $user[0]->address." , ".$user[0]->phone." , ".$user[0]->email." , ".$user[0]->username." , ".$user[0]->end_date." , ".$sta." ]";
             // return Users::selection()->where('id',$user_id)->get();
-          
+
             Users::where('id',$user_id)
            ->update(
               [

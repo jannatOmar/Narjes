@@ -10,7 +10,7 @@ use App\Http\Requests\updatePriceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class financialController extends Controller
+class FinancialController extends Controller
 {
     public function index (){
         $analysis = Analysis::select('analysis_id', 'analysis_name', 'price')->paginate(PAGINATION_COUNT);
@@ -59,7 +59,7 @@ class financialController extends Controller
 
                     ]
                 );
-           
+
              $mess = "the user ".$us." make an update on price of analysis: ".$my_an." from : ".$price." to be : " . $req["price"];
             $action = Actions::create(
                 [

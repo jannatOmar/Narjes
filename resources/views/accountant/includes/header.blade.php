@@ -20,7 +20,7 @@
 
         <form class="navbar-form">
               <div class="input-group no-border" style="height:0.5px">
-                
+
               </div>
             </form>
             <ul class="navbar-nav">
@@ -36,8 +36,9 @@
                     <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">notifications</i>
-                        
-                        <?php $notifications=getNotifications()?>
+
+                        <?php $notifications = App\Helpers\App\Models\NotificationsGeneral::getNotifications(); ?>
+
                         <span class="notification">@isset($notifications){{count($notifications)}}@endisset</span>
                         <p class="d-lg-none d-md-block">
                             Some Actions
@@ -47,10 +48,10 @@
                         @isset($notifications)
                         @foreach($notifications as $notify)
                         <div class="dropdown-item" >
-                         
+
                                {{$notify->data}}
                                <a href="{{route('accountant.readNotification',$notify->id)}}">read</a>
-                        </div> 
+                        </div>
                         @endforeach
                         @endisset
                     </div>

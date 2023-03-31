@@ -30,7 +30,7 @@ namespace App\Http\Controllers\Accountant;
     use Illuminate\Support\Str;
 
     use Carbon\Carbon;
-        class patientManagmentController extends Controller
+        class PatientManagmentController extends Controller
     {
 
         public function index(){
@@ -206,7 +206,7 @@ namespace App\Http\Controllers\Accountant;
            $doctor_id=Doctor::selection()->where(DB::raw("CONCAT(f_name,' ',m_name,' ',l_name)"),$doctor_name)->first();
 
           $d_name = $doctor_id->f_name." ".$doctor_id->m_name." ".$doctor_id->l_name;
-         
+
 
          for($i=0;$i<count($test);$i++){
           $analysis[]=Analysis::select('analysis_id')->where([['analysis_name',$test[$i]],['price',$analysis_price[$i]]])->get();

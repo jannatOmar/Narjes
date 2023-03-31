@@ -33,7 +33,7 @@ namespace App\Http\Controllers\manager;
 
 
 
-    class patientManagmentController extends Controller
+    class PatientManagmentController extends Controller
     {
 
         public function index(){
@@ -279,7 +279,7 @@ namespace App\Http\Controllers\manager;
         }
         $last_date=All_Results::orderBy('created_at', 'asc')->whereHas('required_analysis', function($q) use($analysis_id,$patient_id){
           $q->where('analysis_id', $analysis_id)->where('patient_id',$patient_id);
-         
+
            })
            ->select(DB::raw('MAX(created_at) as last_date'))->get();
           $last_result=All_Results::select('data')->

@@ -26,32 +26,32 @@ Route::group(['prefix'=>'manager','middleware'=>['auth:manager','prevent-back-hi
 
     ####################patientmanagment##############
     Route::group(['prefix'=>'patientManagment', 'namespace'=>'Manager'],function(){
-        Route::get('/','patientManagmentController@index')->name('manager.patientManagment');
-        Route::get('/search','patientManagmentController@search')->name('manager.patient.search');
-        Route::get('create','patientManagmentController@create')->name('manager.patientManagment.create');
-        Route::post('store','patientManagmentController@store')->name('manager.patientManagment.store');
-        Route::get('/history/{id}','patientManagmentController@history')->name('manager.patientManagment.history');
+        Route::get('/','PatientManagmentController@index')->name('manager.patientManagment');
+        Route::get('/search','PatientManagmentController@search')->name('manager.patient.search');
+        Route::get('create','PatientManagmentController@create')->name('manager.patientManagment.create');
+        Route::post('store','PatientManagmentController@store')->name('manager.patientManagment.store');
+        Route::get('/history/{id}','PatientManagmentController@history')->name('manager.patientManagment.history');
 
-        Route::get('/searchHistory/{patient_id}','patientManagmentController@searchHistory')->name('manager.patientHistory.search');
+        Route::get('/searchHistory/{patient_id}','PatientManagmentController@searchHistory')->name('manager.patientHistory.search');
 
-        Route::get('/filter','patientManagmentController@filter')->name('manager.patientManagment.filter');
-        Route::get('/showResults/{analysis_id}/{patient_id}/{analysis_required_id}','patientManagmentController@showResults')->name('manager.patientManagment.result');
+        Route::get('/filter','PatientManagmentController@filter')->name('manager.patientManagment.filter');
+        Route::get('/showResults/{analysis_id}/{patient_id}/{analysis_required_id}','PatientManagmentController@showResults')->name('manager.patientManagment.result');
 
-        Route::get('/editResult/{analysis_id}/{patient_id}/{analysis_required_id}','patientManagmentController@editResult')->name('manager.patient.editResult');
-        Route::post('/updateResult/{analysis_required_id}/{patient_id}','patientManagmentController@updateResult')->name('manager.patient.updateResult');
+        Route::get('/editResult/{analysis_id}/{patient_id}/{analysis_required_id}','PatientManagmentController@editResult')->name('manager.patient.editResult');
+        Route::post('/updateResult/{analysis_required_id}/{patient_id}','PatientManagmentController@updateResult')->name('manager.patient.updateResult');
 
-        Route::get('/addAnalysis','patientManagmentController@addAnalysis')->name('manager.patientManagment.addAnalysis');
-        Route::get('/watingAnalysis','patientManagmentController@analysisWating')->name('manager.patientManagment.AnalysisWating');
-        Route::get('/searchAnalysis','patientManagmentController@searchAnalysisWaitingResult')->name('manager.patient.searchAnalysisWaitingResult');
-        Route::get('/showRequiredAnalysis/{analysis_id}','patientManagmentController@showRequiredAnalysis')->name('manager.patient.showRequiredAnalysis');
-        Route::get('/enterResult/{analysis_id}/{patient_id}/{analysis_required_id}','patientManagmentController@enterResult')->name('manager.patient.enterResult');
-        Route::post('/saveResult/{analysis_required_id}/{analysis_id}','patientManagmentController@saveResult')->name('manager.patient.saveResult');
+        Route::get('/addAnalysis','PatientManagmentController@addAnalysis')->name('manager.patientManagment.addAnalysis');
+        Route::get('/watingAnalysis','PatientManagmentController@analysisWating')->name('manager.patientManagment.AnalysisWating');
+        Route::get('/searchAnalysis','PatientManagmentController@searchAnalysisWaitingResult')->name('manager.patient.searchAnalysisWaitingResult');
+        Route::get('/showRequiredAnalysis/{analysis_id}','PatientManagmentController@showRequiredAnalysis')->name('manager.patient.showRequiredAnalysis');
+        Route::get('/enterResult/{analysis_id}/{patient_id}/{analysis_required_id}','PatientManagmentController@enterResult')->name('manager.patient.enterResult');
+        Route::post('/saveResult/{analysis_required_id}/{analysis_id}','PatientManagmentController@saveResult')->name('manager.patient.saveResult');
 
 
-        Route::get('edit/{id}','patientManagmentController@edit')->name('manager.patientManagment.edit');
-        Route::post('update/{id}','patientManagmentController@update')->name('manager.patientManagment.update');//or put
-        Route::post('/confirmDiscount','patientManagmentController@confirmDiscount')->name('manager.patientManagment.confirmDiscount');
-        Route::post('/confirmPayment','patientManagmentController@confirmPayment')->name('manager.patientManagment.confirmPayment');
+        Route::get('edit/{id}','PatientManagmentController@edit')->name('manager.patientManagment.edit');
+        Route::post('update/{id}','PatientManagmentController@update')->name('manager.patientManagment.update');//or put
+        Route::post('/confirmDiscount','PatientManagmentController@confirmDiscount')->name('manager.patientManagment.confirmDiscount');
+        Route::post('/confirmPayment','PatientManagmentController@confirmPayment')->name('manager.patientManagment.confirmPayment');
 
     });
     ########################end patientmanagment###########################
@@ -65,29 +65,29 @@ Route::group(['prefix'=>'manager','middleware'=>['auth:manager','prevent-back-hi
 
     ####################analysis managment##############
     Route::group(['prefix'=>'analysis',  'namespace'=>'Manager'],function(){
-        Route::get('/','analysisController@index')->name('manager.showAnalysis');
-        Route::get('showForm/{id}','analysisController@viewForm')->name('manager.showAnalysis.form');
-        Route::post('updateForm/{id}','analysisController@analysisUpdateForm')->name('manager.showAnalysis.updateForm');
-        Route::any('deleteInput/{analysis_id}/{input_id}','analysisController@deleteInput')->name('manager.showAnalysis.deleteInput');
-        Route::any('deleteInput/{analysis_id}/{input_id}/{option_id}','analysisController@deleteOption')->name('manager.showAnalysis.deleteOption');
-        Route::any('deleteInputName/{analysis_id}/{input_id}','analysisController@deleteInputName')->name('manager.showAnalysis.deleteInputName');
-       Route::get('addInput/{id}','analysisController@AddNewInputs')->name('manager.analysis.addInputs');
-       Route::post('storeInput/{id}','analysisController@storeNewInputs')->name('manager.analysis.storeInputs');
+        Route::get('/','AnalysisController@index')->name('manager.showAnalysis');
+        Route::get('showForm/{id}','AnalysisController@viewForm')->name('manager.showAnalysis.form');
+        Route::post('updateForm/{id}','AnalysisController@analysisUpdateForm')->name('manager.showAnalysis.updateForm');
+        Route::any('deleteInput/{analysis_id}/{input_id}','AnalysisController@deleteInput')->name('manager.showAnalysis.deleteInput');
+        Route::any('deleteInput/{analysis_id}/{input_id}/{option_id}','AnalysisController@deleteOption')->name('manager.showAnalysis.deleteOption');
+        Route::any('deleteInputName/{analysis_id}/{input_id}','AnalysisController@deleteInputName')->name('manager.showAnalysis.deleteInputName');
+       Route::get('addInput/{id}','AnalysisController@AddNewInputs')->name('manager.analysis.addInputs');
+       Route::post('storeInput/{id}','AnalysisController@storeNewInputs')->name('manager.analysis.storeInputs');
 
 
-        Route::get('/search','analysisController@search')->name('manager.search');
-        Route::get('/fiter', 'analysisController@filter')->name('manager.filter');
-       Route::get('create','analysisController@createForm')->name('manager.analysis.create');
-       Route::post('store','analysisController@storeForm')->name('manager.analysis.store');
+        Route::get('/search','AnalysisController@search')->name('manager.search');
+        Route::get('/fiter', 'AnalysisController@filter')->name('manager.filter');
+       Route::get('create','AnalysisController@createForm')->name('manager.analysis.create');
+       Route::post('store','AnalysisController@storeForm')->name('manager.analysis.store');
     });
     ########################end analysis managment###########################
 
     #######################financial managment##########################
     Route::group(['prefix'=>'financialDetails', 'namespace'=>'Manager'],function(){
-        Route::get('/','financialController@index')->name('manager.laboratryAnalysisPrice');
-      Route::get('/search','financialController@search')->name('manager.laboratoryDetails.search');
-       Route::get('edit/{id}','financialController@edit')->name('manager.laboratoryDetails.edit');
-       Route::post('update/{id}','financialController@update')->name('manager.laboratoryDetails.update');//or put
+        Route::get('/','FinancialController@index')->name('manager.laboratryAnalysisPrice');
+      Route::get('/search','FinancialController@search')->name('manager.laboratoryDetails.search');
+       Route::get('edit/{id}','FinancialController@edit')->name('manager.laboratoryDetails.edit');
+       Route::post('update/{id}','FinancialController@update')->name('manager.laboratoryDetails.update');//or put
     });
 
 
@@ -95,12 +95,12 @@ Route::group(['prefix'=>'manager','middleware'=>['auth:manager','prevent-back-hi
 
     ####################### doctor ##########################
     Route::group(['prefix'=>'doctor',  'namespace'=>'Manager'],function(){
-       Route::get('/','doctorController@index')->name('manager.doctor.managment');
-       Route::get('create','doctorController@addDoctor')->name('manager.doctor.create');
-       Route::post('store','doctorController@storeDoctor')->name('manager.doctor.store');
-       Route::get('/search','doctorController@search')->name('manager.doctor.search');
-       Route::get('edit/{id}','doctorController@edit')->name('manager.doctor.edit');
-       Route::post('update/{id}','doctorController@update')->name('manager.doctor.update');
+       Route::get('/','DoctorController@index')->name('manager.doctor.managment');
+       Route::get('create','DoctorController@addDoctor')->name('manager.doctor.create');
+       Route::post('store','DoctorController@storeDoctor')->name('manager.doctor.store');
+       Route::get('/search','DoctorController@search')->name('manager.doctor.search');
+       Route::get('edit/{id}','DoctorController@edit')->name('manager.doctor.edit');
+       Route::post('update/{id}','DoctorController@update')->name('manager.doctor.update');
     });
 
 

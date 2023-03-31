@@ -31,7 +31,7 @@ namespace App\Http\Controllers\admin;
 
 
     use Carbon\Carbon;
-        class patientManagmentController extends Controller
+    class PatientManagmentController extends Controller
     {
 
         public function index(){
@@ -222,7 +222,7 @@ namespace App\Http\Controllers\admin;
 
             // $last_date=All_Results::orderBy('created_at', 'asc')->whereHas('required_analysis', function($q) use($analysis_id,$patient_id){
             // $q->where('analysis_id', $analysis_id)->where('patient_id',$patient_id);
-           
+
             //  })
             //  ->select(DB::raw('MAX(created_at) as last_date'))->get();
 
@@ -235,7 +235,7 @@ namespace App\Http\Controllers\admin;
             //     'created_at'=>$last_date[0]->last_date,
             //   ]
             // )->get();
-          
+
         return view('admin.patientmanagment.result',compact(['results','normal_range','doctor_name','patient','age']));
        }catch(\Exception $ex){
         return redirect()->back()->with(['error'=>'هناك خطأ ما يرجى اعادة المحاولة']);
@@ -302,7 +302,7 @@ namespace App\Http\Controllers\admin;
         }
         $last_date=All_Results::orderBy('created_at', 'asc')->whereHas('required_analysis', function($q) use($analysis_id,$patient_id){
           $q->where('analysis_id', $analysis_id)->where('patient_id',$patient_id);
-         
+
            })
            ->select(DB::raw('MAX(created_at) as last_date'))->get();
           $last_result=All_Results::select('data')->

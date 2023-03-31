@@ -10,7 +10,7 @@ use App\Models\Doctor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
-class doctorController extends Controller
+class DoctorController extends Controller
 {
 
     public function index(){

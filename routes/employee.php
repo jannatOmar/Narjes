@@ -16,19 +16,19 @@ Route::group(['prefix'=>'employee','middleware'=>['auth:employee','prevent-back-
 
     ####################patientmanagment##############
     Route::group(['prefix'=>'patientManagment', 'namespace'=>'Employee'],function(){
-        Route::get('/','patientManagmentController@index')->name('employee.patientManagment');
-        Route::get('/search','patientManagmentController@search')->name('employee.patient.search');
+        Route::get('/','PatientManagmentController@index')->name('employee.patientManagment');
+        Route::get('/search','PatientManagmentController@search')->name('employee.patient.search');
 
-        Route::get('/history/{id}','patientManagmentController@history')->name('employee.patientManagment.history');
-        Route::get('/searchHistory/{patient_id}','patientManagmentController@searchHistory')->name('employee.patientHistory.search');
+        Route::get('/history/{id}','PatientManagmentController@history')->name('employee.patientManagment.history');
+        Route::get('/searchHistory/{patient_id}','PatientManagmentController@searchHistory')->name('employee.patientHistory.search');
 
-        Route::get('/showResults/{analysis_id}/{patient_id}/{analysis_required_id}','patientManagmentController@showResults')->name('employee.patientManagment.result');
+        Route::get('/showResults/{analysis_id}/{patient_id}/{analysis_required_id}','PatientManagmentController@showResults')->name('employee.patientManagment.result');
 
-        Route::get('/watingAnalysis','patientManagmentController@analysisWating')->name('employee.patientManagment.AnalysisWating');
-        Route::get('/searchAnalysis','patientManagmentController@searchAnalysisWaitingResult')->name('employee.patient.searchAnalysisWaitingResult');
-        Route::get('/showRequiredAnalysis/{analysis_id}','patientManagmentController@showRequiredAnalysis')->name('employee.patient.showRequiredAnalysis');
-        Route::get('/enterResult/{analysis_id}/{patient_id}/{analysis_required_id}','patientManagmentController@enterResult')->name('employee.patient.enterResult');
-        Route::post('/saveResult/{analysis_required_id}/{analysis_id}','patientManagmentController@saveResult')->name('employee.patient.saveResult');
+        Route::get('/watingAnalysis','PatientManagmentController@analysisWating')->name('employee.patientManagment.AnalysisWating');
+        Route::get('/searchAnalysis','PatientManagmentController@searchAnalysisWaitingResult')->name('employee.patient.searchAnalysisWaitingResult');
+        Route::get('/showRequiredAnalysis/{analysis_id}','PatientManagmentController@showRequiredAnalysis')->name('employee.patient.showRequiredAnalysis');
+        Route::get('/enterResult/{analysis_id}/{patient_id}/{analysis_required_id}','PatientManagmentController@enterResult')->name('employee.patient.enterResult');
+        Route::post('/saveResult/{analysis_required_id}/{analysis_id}','PatientManagmentController@saveResult')->name('employee.patient.saveResult');
 
 
     });
@@ -42,15 +42,15 @@ Route::group(['prefix'=>'employee','middleware'=>['auth:employee','prevent-back-
 
     ####################analysis managment##############
     Route::group(['prefix'=>'analysis',  'namespace'=>'Employee'],function(){
-        Route::get('/','analysisController@index')->name('employee.showAnalysis');
-        Route::get('showForm/{id}','analysisController@viewForm')->name('employee.showAnalysis.form');
-        Route::get('/search','analysisController@search')->name('employee.search');
-        Route::get('/fiter', 'analysisController@filter')->name('employee.filter');
-       
+        Route::get('/','AnalysisController@index')->name('employee.showAnalysis');
+        Route::get('showForm/{id}','AnalysisController@viewForm')->name('employee.showAnalysis.form');
+        Route::get('/search','AnalysisController@search')->name('employee.search');
+        Route::get('/fiter', 'AnalysisController@filter')->name('employee.filter');
+
     });
     ########################end analysis managment###########################
 
-   
+
 
 });
 

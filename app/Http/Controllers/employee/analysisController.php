@@ -12,7 +12,7 @@ use App\Http\Requests\addNewInputsRequest;
 use App\Http\Requests\UpdateFormRequest;
 use App\Http\Controllers\Controller;
 
-class analysisController extends Controller
+class AnalysisController extends Controller
 {
     public function index(){
         $analysis=Analysis::selection()->paginate(PAGINATION_COUNT);
@@ -44,9 +44,9 @@ class analysisController extends Controller
     }
      public function viewForm($analysis_id){
       try{
-          
+
               $normal_range =NormalRange::with('input','analysis')->where('analysis_id',$analysis_id)->get();
-             if(!empty($normal_range)){ 
+             if(!empty($normal_range)){
                    $ana =Analysis::where('analysis_id',$analysis_id)->get();
                   $analysis=$ana[0];
              }else{
@@ -57,7 +57,7 @@ class analysisController extends Controller
               $data_optionId=[];
               $input=Options::select('input_id')->with('input','analysis')->where('analysis_id',$analysis_id)->distinct()->get();
             foreach($input as $i=>$op){
-               $optionName=Options::select('option_id','option_name','input_id')->with('input','analysis')->where('input_id',$op->input_id)->get();                
+               $optionName=Options::select('option_id','option_name','input_id')->with('input','analysis')->where('input_id',$op->input_id)->get();
                foreach($optionName as $i=>$kk){
                    $optionO[]=$optionName[$i]->option_name;
                   $data_optionId[]=$optionName[$i]->option_id;
@@ -68,12 +68,12 @@ class analysisController extends Controller
                $data[]= array($input_name => $optionO);
                $optionO=[];
           }
-        
+
         return view('employee.analysis.viewForm',compact('analysis','input','data_option','normal_range','data'));
       }catch(\Exception $ex){
         return redirect()->back()->with(['error'=>'هناك خطأ ما يرجى اعادة المحاولة']);
       }
      }
-    
+
 
 }

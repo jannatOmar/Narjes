@@ -30,8 +30,8 @@
                     <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">notifications</i>
-                        
-                    <?php $notifications=getNotifications()?>
+
+                    <?php  $notifications = \App\Helpers\General::getNotifications(); ?>
                         <span class="notification">@isset($notifications){{count($notifications)}}@endisset  </span>
                         <p class="d-lg-none d-md-block">
                             Some Actions
@@ -42,12 +42,12 @@
                     @isset($notifications)
                         @foreach($notifications as $notify)
                         <div class="dropdown-item" href="#">
-                         
+
                             <!-- <a href="#"> -->
                                {{$notify->data}}
                                <a href="{{route('employee.readNotification',['data'=>$notify->data,'created_at'=>$notify->created_at,'sender'=>$notify->sender_id])}}">read</a>
                            <!-- </a> -->
-                        </div> 
+                        </div>
                         @endforeach
                         @endisset
 

@@ -20,7 +20,7 @@
 
         <form class="navbar-form" method="get">
               <div class="input-group no-border" style="height:0.5px">
-                
+
               </div>
             </form>
             <ul class="navbar-nav">
@@ -36,24 +36,24 @@
                     <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">notifications</i>
-                        
-                       <?php $notifications=getNotifications()?>
+
+                       <?php  $notifications = \App\Helpers\General::getNotifications(); ?>
 
                         <span class="notification"> @isset($notifications){{count($notifications)}}@endisset</span>
                         <p class="d-lg-none d-md-block">
                             Some Actions
-                            
+
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 
                         @isset($notifications)
                         @foreach($notifications as $notify)
-                        
+
                             <a class="dropdown-item" href="{{route('admin.patientManagment.showConfirmDiscount',$notify->id)}}">
                                {{$notify->data}}
                            </a>
-                         
+
                         @endforeach
                         @endisset
                     </div>

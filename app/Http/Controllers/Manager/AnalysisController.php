@@ -16,7 +16,7 @@ use App\Http\Requests\UpdateFormRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class analysisController extends Controller
+class AnalysisController extends Controller
 {
     public function index(){
         $analysis=Analysis::selection()->paginate(PAGINATION_COUNT);

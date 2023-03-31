@@ -9,7 +9,7 @@ use App\Models\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class discountController extends Controller
+class DiscountController extends Controller
 {
     public function index(){
 

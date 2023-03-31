@@ -25,22 +25,22 @@ Route::group(['prefix'=>'accountant','middleware'=>['auth:accountant','prevent-b
 
     ####################patientmanagment##############
     Route::group(['prefix'=>'patientManagment', 'namespace'=>'Accountant'],function(){
-        Route::get('/','patientManagmentController@index')->name('accountant.patientManagment');
-        Route::get('/search','patientManagmentController@search')->name('accountant.patient.search');
-        Route::get('create','patientManagmentController@create')->name('accountant.patientManagment.create');
-        Route::post('store','patientManagmentController@store')->name('accountant.patientManagment.store');
+        Route::get('/','PatientManagmentController@index')->name('accountant.patientManagment');
+        Route::get('/search','PatientManagmentController@search')->name('accountant.patient.search');
+        Route::get('create','PatientManagmentController@create')->name('accountant.patientManagment.create');
+        Route::post('store','PatientManagmentController@store')->name('accountant.patientManagment.store');
 
 
-        Route::get('/filter','patientManagmentController@filter')->name('accountant.patientManagment.filter');
+        Route::get('/filter','PatientManagmentController@filter')->name('accountant.patientManagment.filter');
 
-        Route::get('/addAnalysis','patientManagmentController@addAnalysis')->name('accountant.patientManagment.addAnalysis');
-        Route::post('/saveResult/{analysis_required_id}/{analysis_id}','patientManagmentController@saveResult')->name('accountant.patient.saveResult');
+        Route::get('/addAnalysis','PatientManagmentController@addAnalysis')->name('accountant.patientManagment.addAnalysis');
+        Route::post('/saveResult/{analysis_required_id}/{analysis_id}','PatientManagmentController@saveResult')->name('accountant.patient.saveResult');
 
 
-        Route::get('edit/{id}','patientManagmentController@edit')->name('accountant.patientManagment.edit');
-        Route::post('update/{id}','patientManagmentController@update')->name('accountant.patientManagment.update');//or put
-        Route::post('/confirmDiscount','patientManagmentController@confirmDiscount')->name('accountant.patientManagment.confirmDiscount');
-        Route::post('/confirmPayment','patientManagmentController@confirmPayment')->name('accountant.patientManagment.confirmPayment');
+        Route::get('edit/{id}','PatientManagmentController@edit')->name('accountant.patientManagment.edit');
+        Route::post('update/{id}','PatientManagmentController@update')->name('accountant.patientManagment.update');//or put
+        Route::post('/confirmDiscount','PatientManagmentController@confirmDiscount')->name('accountant.patientManagment.confirmDiscount');
+        Route::post('/confirmPayment','PatientManagmentController@confirmPayment')->name('accountant.patientManagment.confirmPayment');
 
     });
     ########################end patientmanagment###########################

@@ -16,7 +16,7 @@ use App\Http\Requests\UpdateFormRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class analysisController extends Controller
+class AnalysisController extends Controller
 {
     public function index(){
         $analysis=Analysis::selection()->paginate(PAGINATION_COUNT);
@@ -153,7 +153,7 @@ class analysisController extends Controller
               // }
           }
           NormalRange::insert($insert_data2);
-         } 
+         }
          if(!empty($option_input)){
               for ($count = 0; $count < count($option_input); $count++) {
                   $data1 = array(
@@ -188,7 +188,7 @@ class analysisController extends Controller
              }
                 Options::insert($insert_option);
               }
-         } 
+         }
          if(empty($input_name) && empty($option_input)){
            return redirect()->back()->with(['error'=>' يجب ادخال اتربيوت للتحليل المدخل']);
          }
@@ -412,7 +412,7 @@ class analysisController extends Controller
               'update_user_id'=>auth()->user()->id
                ]
             );
-            
+
           }
         }
 
@@ -441,7 +441,7 @@ class analysisController extends Controller
                $my_option[]=$request->input($arr[$i]);
                $insert_option=[];
                $Options= Options::select('option_name')->where('input_id',$option_input[$i])->where('analysis_id',$analysis_id)->get();
-               
+
                foreach($input_id1[$i] as $key=> $index1){
                   Options::where('analysis_id',$analysis_id)->where('input_id',$index1->input_id)
                     ->where('option_id',$index1->option_id)->update(
@@ -451,7 +451,7 @@ class analysisController extends Controller
                         ]);
                  }
                 }
-    
+
 
             for($i=0; $i<count($option_input); $i++){
                     $opt.=" input ".$option_input[$i]." with options [ ";

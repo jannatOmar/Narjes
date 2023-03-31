@@ -11,7 +11,7 @@ use App\Http\Requests\userActionRequest;
 
 use App\Http\Requests\loggingRequest;
 
-class actionController extends Controller
+class ActionController extends Controller
 {
     public function index(){
         return view('admin.actions.action');
@@ -73,5 +73,5 @@ class actionController extends Controller
 
 
     }
-    
+
 }
