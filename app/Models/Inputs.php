@@ -34,4 +34,5 @@ class Inputs extends Model
     public function  option(){
         return $this->hasMany('App\Models\Options', 'input_id','option_id');
     }
+   
 }

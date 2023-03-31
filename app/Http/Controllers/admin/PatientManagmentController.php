@@ -285,27 +285,27 @@ namespace App\Http\Controllers\admin;
   public function enterResult($analysis_id,$patient_id,$analysis_required_id){
     try{
           $data=[];
-          $analysis=Analysis_requierd::with('analysis','doctor')->selection()->where([
+           $analysis=Analysis_requierd::with('analysis','doctor')->selection()->where([
             'id'=>$analysis_required_id
             ])->get();
-          $analysis_id=$analysis[0]->analysis_id;
+        $analysis_id=$analysis[0]->analysis_id;
         $patient=Patient::where('patient_id',$patient_id)->select(DB::raw("CONCAT(f_name,' ',m_name,' ',l_name) AS PATIENTNAME"),'gender','birthday','address')->first();
         $age=\Carbon\Carbon::parse($patient->birthday)->diff(\Carbon\Carbon::now())->format('%y');
         $normal_range =NormalRange::with('input')->where('analysis_id',$analysis_id)->get();
 
-
-         $options =Options::select('input_id')->with('input')->distinct()->where('analysis_id',$analysis_id)->get();
+        $options =Options::select('input_id')->with('input')->distinct()->where('analysis_id',$analysis_id)->get();
         foreach($options as $op){
            $opt=Options::select('option_name')->where('analysis_id',$analysis_id)->where('input_id',$op->input[0]->input_id)->get();
             $data[]= array($op->input[0]->input_name => $opt);
             $opt=[];
         }
-        $last_date=All_Results::orderBy('created_at', 'asc')->whereHas('required_analysis', function($q) use($analysis_id,$patient_id){
+         $last_date=All_Results::orderBy('created_at', 'asc')->whereHas('required_analysis', function($q) use($analysis_id,$patient_id){
           $q->where('analysis_id', $analysis_id)->where('patient_id',$patient_id);
 
            })
-           ->select(DB::raw('MAX(created_at) as last_date'))->get();
-          $last_result=All_Results::select('data')->
+          ->select(DB::raw('MAX(created_at) as last_date'))->get();
+
+           $last_result=All_Results::select('data')->
             whereHas('required_analysis', function($q) use($analysis_id){
             $q->where('analysis_id', $analysis_id);
              })
@@ -317,8 +317,7 @@ namespace App\Http\Controllers\admin;
 
         return view('admin.patientmanagment.enterResult',compact(['analysis','analysis_id','patient','age','normal_range','data','analysis_required_id','last_result']));
      }catch(\Exception $ex){
-       return $ex;
-     return redirect()->back()->with(['error'=>'هناك خطأ ما يرجى اعادة المحاولة']);
+       return redirect()->back()->with(['error'=>'هناك خطأ ما يرجى اعادة المحاولة']);
      }
   }
   public function saveResult(storeResultRequest $request,$analysis_required_id,$analysis_id){
